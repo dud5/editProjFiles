@@ -82,7 +82,7 @@ namespace rdomunozcom.EditProj
                         this.tempToProjFiles.Remove(tempProjFilePath);
                     }
 
-                    tempProjFilePath = GetNewTempFilePath();
+                    tempProjFilePath = GetNewTempFilePath(projFilePath);
                     this.tempToProjFiles[tempProjFilePath] = projFilePath;
                 }
 
@@ -124,10 +124,10 @@ namespace rdomunozcom.EditProj
             return projFilePath;
         }
 
-        private static string GetNewTempFilePath()
+        private static string GetNewTempFilePath(string projFilePath)
         {
             string tempDir = Path.GetTempPath();
-            string tempProjFile = Guid.NewGuid().ToString() + ".xml";
+            string tempProjFile = Path.GetFileName(projFilePath) + ".xml";
             string tempProjFilePath = Path.Combine(tempDir, tempProjFile);
             return tempProjFilePath;
         }
